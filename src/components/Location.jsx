@@ -14,19 +14,19 @@ const Location = () => {
 
     return (
 
-        <div>
-            <h3>
-                Name: {Id.name}
-            </h3>
-            <h3>
-                Type: {Id.type}
-            </h3>
-            <h3>
-                Dimension: {Id.dimension}
-            </h3>
-            <h3>
-                Population: {(Id.residents)?.length}
-            </h3>
+        <div className='Location-Data'>
+            <div>
+                <h3> Name: <br /> {Id.name} </h3>
+            </div>
+            <div>
+                <h3> Type: <br /> {Id.type} </h3>
+            </div>
+            <div>
+                <h3> Dimension: <br /> {Id.dimension} </h3>
+            </div>
+            <div>
+                <h3> Population: <br /> {(Id.residents)?.length} </h3>
+            </div>
         </div>
 
     );
