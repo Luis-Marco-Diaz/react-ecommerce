@@ -1,0 +1,124 @@
+/*
+==============================
+  * CSS TABLE CONTENT *  
+==============================
+1. GOOGLE FONT
+2. VARIABLES CSS
+3. BASE
+4. REUSABLE CSS CLASSES
+5. HEADER & NAV
+6. BREAKPOINTS
+==============================
+  * END TABLE CONTENT *  
+==============================
+*/
+/* ============ VARIABLES CSS ============= */
+:root {
+  --header-height: 60px;
+
+  /* Colores */
+  --bg-color: #000000;
+  --text-primary:#ffffff;
+  ;
+
+   /* Tipografía */
+   --body-font:'Sen', system-ui, -apple-system, BlinkMacSystemFont, 'Open Sans', 'Helvetica Neue';
+   --big-font-size: 32px;
+   --normal-font-size: 20px;
+   --small-font-size: 16px;
+   --smaller-font-size: 12px;
+   --color-typography: #FFFFFF;
+ 
+   /* Grosores */
+   --font-medium: 400;
+   --font-semi-bold: 700;
+   --font-bold: 800;
+ 
+   /* Margenes */
+   --mr-1: 8px;
+   --mr-2: 16px;
+   --mr-3: 20px;
+   --mr-4: 26px;
+   --mr-5: 32px;
+ 
+   /* z-index */
+   --z-modal: 10;
+   --z-fixed: 100;
+ 
+   /* Sombras */
+   --box-shadow: 0px 10px 100px rgba(0, 0, 0, .10);
+   --button-shadow: 0px 3px 10px #5221E6;
+   --text-shadow: 2px 3px #ee991a55
+}
+
+
+@media (min-width: 768px) {
+  :root {
+    --header-height: 90px;
+    --big-font-size: 36px;
+    --normal-font-size: 18px;
+    --small-font-size: 16px;
+    --smaller-font-size: 14px;
+  }
+}  
+
+/* ============ BASE ============= */
+
+
+body {
+  justify-content: center;
+  align-items: center;
+  text-align: center;font-family: var(--body-font);
+  font-size: var(--normal-font-size);
+  margin: 0;
+  background-color: #000000;
+  color: var(--text-primary)
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
