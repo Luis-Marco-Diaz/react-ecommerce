@@ -1,69 +1,41 @@
-/*
-==============================
-  * CSS TABLE CONTENT *  
-==============================
-1. GOOGLE FONT
-2. VARIABLES CSS
-3. BASE
-4. REUSABLE CSS CLASSES
-5. HEADER & NAV
-6. BREAKPOINTS
-==============================
-  * END TABLE CONTENT *  
-==============================
-*/
 /* ============ VARIABLES CSS ============= */
 :root {
-  --header-height: 60px;
-
   /* Colores */
   --bg-color: #000000;
   --text-primary:#ffffff;
-  ;
 
    /* Tipografía */
    --body-font:'Sen', system-ui, -apple-system, BlinkMacSystemFont, 'Open Sans', 'Helvetica Neue';
-   --big-font-size: 32px;
-   --normal-font-size: 20px;
-   --small-font-size: 16px;
-   --smaller-font-size: 12px;
    --color-typography: #FFFFFF;
- 
-   /* Grosores */
-   --font-medium: 400;
-   --font-semi-bold: 700;
-   --font-bold: 800;
- 
-   /* Margenes */
-   --mr-1: 8px;
-   --mr-2: 16px;
-   --mr-3: 20px;
-   --mr-4: 26px;
-   --mr-5: 32px;
- 
-   /* z-index */
-   --z-modal: 10;
-   --z-fixed: 100;
- 
+
    /* Sombras */
    --box-shadow: 10px 10px 20px rgba(201, 201, 201, 0.193);
    --button-shadow: 0px 3px 10px #5221E6;
    --text-shadow: 2px 3px #ee991a55
 }
 
-
 @media (min-width: 768px) {
   :root {
-    --header-height: 90px;
-    --big-font-size: 36px;
-    --normal-font-size: 18px;
-    --small-font-size: 16px;
-    --smaller-font-size: 14px;
+    --header-height: 120px;
   }
 }  
 
 /* ============ BASE ============= */
+header {
+  top: 0;
+  right: 0;
+  height: 300px;
+  width: 100vmax;
+  background-image: url("/background header.png");
+  background-size: cover;
+  position: absolute;
+  z-index: 1;
+}
 
+h2 {
+  font-size: 60px;
+  line-height: 2.5rem
+}
 
 body {
   justify-content: center;
@@ -71,7 +43,8 @@ body {
   text-align: center;font-family: var(--body-font);
   font-size: var(--normal-font-size);
   margin: 0;
-  background-color: #000000;
+  background-image: url("/background page.png");
+  background-size: cover;
   color: var(--text-primary)
 }
 
@@ -98,7 +71,7 @@ img {
   transition: filter 300ms;
 }
 .logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+  filter: drop-shadow(0 0 2em #64ffaaaa);
 }
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
@@ -119,33 +92,68 @@ img {
   }
 }
 
-.card {
-  padding: 2em;
-}
 
 .Location-Data {
   display: inline-flex;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 40px;
   background-color: #e414ff12;
   padding: 2rem;
   border-radius: 5px;
   box-shadow: var(--box-shadow);
   transition: background .3s;
   transition: 0.5s;
-  gap: auto;
 }
 .Location-Data:hover {
   background-color: rgba(167, 21, 196, 0.259);
   transform: scaleY(1.1) scaleX(1.1);
   color: rgb(243, 231, 5);
 } 
-.Location-Data :nth-child(1) {
-  background-color: #5221E6;
-}
 
-@media screen and (min-width: 768px) {
-  .section {
-    padding: 6rem 0 5rem;
+/*.Location-Data :nth-child(n) {
+  border: solid white;
+}*/
+
+/* ============ SCREEN MEDIA ============= */
+
+@media screen and (max-width: 768px) {
+  :root {
+    --header-height: 150px;
   }
+  header {
+    position: static;
+    display: flex;
+    flex-direction: column;
+    height: 500px;
+    width: 100vh;
+    padding: 5px;
+    text-align: center;
+    align-items: center;
+    background-image: url("/background header.png");
+    background-size: cover;
+    font-size: medium
+  }
+  body {
+    justify-content: center;
+    align-items: center;
+    text-align: center;font-family: var(--body-font);
+    font-size: var(--normal-font-size);
+    background-color: #000000;
+    color: var(--text-primary)
+  }
+  h2 {
+    width: 250px;
+    font-size: 40px;
+    line-height: 2.5rem;
+  }
+  .Content {
+    margin-top: 50px;
+  }
+  .Location-Data {
+    flex-direction: column;
+    margin-bottom: 50px;
+    gap: 1px;
+    width: 200px;
+  }
+
 }
