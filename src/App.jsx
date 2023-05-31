@@ -1,7 +1,7 @@
 import './App.css'
 import axios from "axios";
 import { useState, useEffect } from "react";
-import UsersForm from './components/UsersForm';
+// import UsersForm from './components/UsersForm';
 import UsersList from './components/UsersList';
 
 function App() {
@@ -24,11 +24,9 @@ function App() {
         <h2>Users CRUD</h2>
         </header>
         <div>
-          <UsersList
-          userList = { userList }
-          deleteUser = { deleteUser }
-          />
-          <UsersForm/>
+            <UsersList
+            userList = { UserList }
+            /> 
         </div>
 
       </div>
