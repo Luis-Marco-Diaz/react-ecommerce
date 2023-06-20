@@ -4,6 +4,7 @@ import App from './App.jsx'
 import './index.css'
 import store from './store'
 import { Provider } from 'react-redux'
+import "bootswatch/dist/vapor/bootstrap.min.css"
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
