@@ -11,6 +11,7 @@ import Noopept from './pages/Noopept';
 import Purchases from './pages/Purchases';
 import ProductsDetail from './pages/ProductsDetail';
 import Loader from './components/Loader';
+import Container from 'react-bootstrap/Container';
 
 function App() {
   
@@ -20,16 +21,18 @@ function App() {
     <HashRouter>
       {isLoading && <Loader />}
       <AppNavbar/>
-      <Routes>
-            <Route element = { <Home/> } path='/'/>
-            <Route element = { <Login/> } path='/Login'/>
-            <Route element = { <Dynamind/> } path='/Dynamind'/>
-            <Route element = { <DynamindSport/> } path='/DynamindSport'/>
-            <Route element = { <Noopept/> } path='/Noopept'/>
-            { /* Protected Routes*/ }
-            <Route element = { <Purchases/> } path='/Purchases'/>
-            <Route element = { <ProductsDetail/> } path='/ProductsDetail/:id'/>
-      </Routes>
+        <Container fluid>
+          <Routes>
+                <Route element = { <Home/> } path='/'/>
+                <Route element = { <Login/> } path='/Login'/>
+                <Route element = { <Dynamind/> } path='/Dynamind'/>
+                <Route element = { <DynamindSport/> } path='/DynamindSport'/>
+                <Route element = { <Noopept/> } path='/Noopept'/>
+                { /* Protected Routes*/ }
+                <Route element = { <Purchases/> } path='/Purchases'/>
+                <Route element = { <ProductsDetail/> } path='/ProductsDetail/:id'/>
+          </Routes>
+        </Container>
     </HashRouter>
   );
 }
