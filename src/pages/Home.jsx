@@ -2,10 +2,19 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import Form from "react-bootstrap/Form";
+import {useSelector, useDispatch } from "react-redux";
+import { getProductsThunk } from '../store/slices/products.slice';
+import {useEffect} from "react";
 
-
-function Home() {
+const Home = () => {
+  
+  const dispatch = useDispatch();
+  const productsList = useSelector((state) => state.products);
+  
+  useEffect( () => {
+    dispatch(getProductsThunk());
+  }, [])
+  
   return (
     <div>
       <Row className="pt-5" >
@@ -13,47 +22,28 @@ function Home() {
         Filtrados
         </Col>
         <Col lg={8} md={9} >
-          Productos
-          <Row>
-              <Col>
+          <h1> Productos </h1>
+          <Row xs={1} md={2} lg={3}  >
+            
+            {
+              productsList.map( products => ( 
+                 <Col className="mb-3" key={products.id} >
                   <Card style={{ width: '16rem' }}>
-                    <Card.Img variant="top" src="https://random.imagecdn.app/500/150" />
+                    <Card.Img variant="top" src={products?.images[0].url }
+                    style={ {height:250, objectFit: "cover"} } />
                       <Card.Body>
-                        <Card.Title>Card Title</Card.Title>
+                        <Card.Title> {products.title} </Card.Title>
                         <Card.Text>
                           Some quick example text to build on the card title and make up the
                           bulk of the card's content.
                         </Card.Text>
-                        <Button variant="primary">Go somewhere</Button>
+                        <Button variant="primary">Ver Producto</Button>
                       </Card.Body>
                   </Card>
                 </Col>
-                <Col>
-                <Card style={{ width: '16rem' }}>
-                  <Card.Img variant="top" src="https://random.imagecdn.app/500/150" />
-                    <Card.Body>
-                      <Card.Title>Card Title</Card.Title>
-                      <Card.Text>
-                        Some quick example text to build on the card title and make up the
-                        bulk of the card's content.
-                      </Card.Text>
-                      <Button variant="primary">Go somewhere</Button>
-                    </Card.Body>
-                </Card>
-              </Col>
-              <Col>
-                <Card style={{ width: '16rem' }}>
-                  <Card.Img variant="top" src="https://random.imagecdn.app/500/150" />
-                    <Card.Body>
-                      <Card.Title>Card Title</Card.Title>
-                      <Card.Text>
-                        Some quick example text to build on the card title and make up the
-                        bulk of the card's content.
-                      </Card.Text>
-                      <Button variant="primary">Go somewhere</Button>
-                    </Card.Body>
-                </Card>
-              </Col>
+              ))
+            }
+
           </Row>
         </Col>
       </Row>
