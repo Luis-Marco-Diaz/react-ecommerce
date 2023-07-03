@@ -5,6 +5,6 @@ import products from "./slices/products.slice";
 export default configureStore({
   reducer: {
         isLoading,
-        products,
+        products
 	}
 })

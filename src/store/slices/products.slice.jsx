@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import {setIsLoading } from './isLoading.slice';
-import {axios} from 'axios';
+import { setIsLoading } from './isLoading.slice';
+import axios from "axios";
 
 export const productsSlice = createSlice({
     name: 'products',
@@ -21,5 +21,6 @@ export const getProductsThunk = () => dispatch => {
     .get( "https://e-commerce-api-v2.academlo.tech/api/v1/products" )
     .then( resp => dispatch(setproducts(resp.data)) )
     .catch(error => console.error(error) )
-    .finaly( () => dispatch(setIsLoading(false) ) )
+    .finally( () => dispatch(setIsLoading(false) ) )
+    //.finally método que se ejecuta cuando la promesa es resuelta ( sin importar si fue una respuesta satisfactoria o no)
 };
