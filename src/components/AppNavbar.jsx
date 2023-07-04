@@ -8,7 +8,7 @@ function AppNavbar() {
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container className='AppNavbar'>
-        <Navbar.Brand as= { Link } to="/">NOOTROPIC STORE</Navbar.Brand>
+        <Navbar.Brand as= { Link } to="/">MARCO STORE</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">

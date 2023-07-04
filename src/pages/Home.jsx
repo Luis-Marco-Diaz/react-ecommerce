@@ -4,22 +4,35 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import {useSelector, useDispatch } from "react-redux";
 import { getProductsThunk } from '../store/slices/products.slice';
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
+import axios from "axios";
+import ListGroup from 'react-bootstrap/ListGroup';
 
 const Home = () => {
   
   const dispatch = useDispatch();
   const productsList = useSelector((state) => state.products);
+  const [categories, setCategories] = useState( [] );
   
   useEffect( () => {
     dispatch(getProductsThunk());
+    
+    axios.get("https://e-commerce-api-v2.academlo.tech/api/v1/categories")
+    .then(resp => setCategories(resp.data))
+    .catch(error => console.error(error))
+    
   }, [])
   
   return (
     <div>
       <Row className="pt-5" >
         <Col lg={4} md={3} >
-        Filtrados
+           <ListGroup>
+      <ListGroup.Item disabled>Cras justo odio</ListGroup.Item>
+      <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
+      <ListGroup.Item>Morbi leo risus</ListGroup.Item>
+      <ListGroup.Item>Porta ac consectetur ac</ListGroup.Item>
+    </ListGroup>
         </Col>
         <Col lg={8} md={9} >
           <h1> Productos </h1>
@@ -33,9 +46,9 @@ const Home = () => {
                     style={ {height:250, objectFit: "cover"} } />
                       <Card.Body>
                         <Card.Title> {products.title} </Card.Title>
+                        <Card.Text> {products.brand} </Card.Text>
                         <Card.Text>
-                          Some quick example text to build on the card title and make up the
-                          bulk of the card's content.
+                         {products.price}
                         </Card.Text>
                         <Button variant="primary">Ver Producto</Button>
                       </Card.Body>
