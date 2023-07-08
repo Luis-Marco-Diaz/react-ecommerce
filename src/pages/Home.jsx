@@ -3,7 +3,7 @@ import Card from 'react-bootstrap/Card';
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import {useSelector, useDispatch } from "react-redux";
-import { getProductsThunk } from '../store/slices/products.slice';
+import { getProductsThunk, filterCategoryThunk } from '../store/slices/products.slice';
 import {useEffect, useState} from "react";
 import axios from "axios";
 import ListGroup from 'react-bootstrap/ListGroup';
@@ -15,8 +15,8 @@ const Home = () => {
   const [categories, setCategories] = useState( [] );
   
   useEffect( () => {
-    dispatch(getProductsThunk());
-    
+     dispatch(getProductsThunk());
+     
     axios.get("https://e-commerce-api-v2.academlo.tech/api/v1/categories")
     .then(resp => setCategories(resp.data))
     .catch(error => console.error(error))
@@ -27,17 +27,22 @@ const Home = () => {
     <div>
       <Row className="pt-5" >
         <Col lg={4} md={3} >
-           <ListGroup>
-      <ListGroup.Item disabled>Cras justo odio</ListGroup.Item>
-      <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
-      <ListGroup.Item>Morbi leo risus</ListGroup.Item>
-      <ListGroup.Item>Porta ac consectetur ac</ListGroup.Item>
-    </ListGroup>
+           <ListGroup className="w-100">
+             {
+               categories.map( category => (
+                 <ListGroup.Item 
+                 key = {category.id} 
+                 onClick = { () => dispatch( filterCategoryThunk(category.id) ) }
+                 > {category.name}
+                 </ListGroup.Item>
+               ))
+             }
+             
+           </ListGroup>
         </Col>
         <Col lg={8} md={9} >
           <h1> Productos </h1>
           <Row xs={1} md={2} lg={3}  >
-            
             {
               productsList.map( products => ( 
                  <Col className="mb-3" key={products.id} >
