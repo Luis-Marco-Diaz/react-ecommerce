@@ -27,10 +27,10 @@ export const getProductsThunk = () => dispatch => {
     //.finally método que se ejecuta cuando la promesa es resuelta ( sin importar si fue una respuesta satisfactoria o no)
 };
 
-export  const filterCategoryThunk = () => dispatch => {
+export  const filterCategoryThunk = id => dispatch => {
     dispatch( setIsLoading( true) );
     axios
-    .get("https://e-commerce-api-v2.academlo.tech/api/v1/products?categoryId=2")
+    .get(`https://e-commerce-api-v2.academlo.tech/api/v1/products?categoryId=${id}`)
     .then(resp => dispatch( setproducts(resp.data) ) )
     .catch(error => console.error(error) )
     .finally( () => dispatch(setIsLoading(false) ) )
