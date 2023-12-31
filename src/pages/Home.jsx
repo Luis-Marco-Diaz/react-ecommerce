@@ -7,6 +7,8 @@ import { getProductsThunk, filterCategoryThunk } from '../store/slices/products.
 import {useEffect, useState} from "react";
 import axios from "axios";
 import ListGroup from 'react-bootstrap/ListGroup';
+import { InputGroup } from 'react-bootstrap';
+import { FormControl } from 'react-bootstrap';
 
 const Home = () => {
   
@@ -42,6 +44,16 @@ const Home = () => {
         </Col>
         <Col lg={8} md={9} >
           <h1> Productos </h1>
+            <InputGroup className="mb-3">
+              <FormControl
+                placeholder="Busqueda por nombre"
+                aria-label="Recipient's username"
+                aria-describedby="basic-addon2"
+              />
+              <Button variant="outline-secondary" id="button-addon2">
+                Buscar
+              </Button>
+            </InputGroup>
           <Row xs={1} md={2} lg={3}  >
             {
               productsList.map( products => ( 
