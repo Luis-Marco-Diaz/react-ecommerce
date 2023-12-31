@@ -101,3 +101,7 @@ button:focus-visible {
     transform: rotate(360deg);
   }
 }
+/* ------------------ APP HOME -------------------- */
+.categories{
+  cursor: pointer;
+}

@@ -27,11 +27,11 @@ const Home = () => {
     <div>
       <Row className="pt-5" >
         <Col lg={4} md={3} >
-           <ListGroup className="w-100">
+           <ListGroup className="w-100 categories">
              {
                categories.map( category => (
                  <ListGroup.Item 
-                 key = {category.id} 
+                 key = {category.id}
                  onClick = { () => dispatch( filterCategoryThunk(category.id) ) }
                  > {category.name}
                  </ListGroup.Item>
