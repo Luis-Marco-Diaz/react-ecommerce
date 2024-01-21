@@ -3,7 +3,7 @@ import Card from 'react-bootstrap/Card';
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import {useSelector, useDispatch } from "react-redux";
-import { getProductsThunk, filterCategoryThunk } from '../store/slices/products.slice';
+import { getProductsThunk, filterCategoryThunk, filterProductbyNameThunk } from '../store/slices/products.slice';
 import {useEffect, useState} from "react";
 import axios from "axios";
 import ListGroup from 'react-bootstrap/ListGroup';
@@ -15,6 +15,7 @@ const Home = () => {
   const dispatch = useDispatch();
   const productsList = useSelector((state) => state.products);
   const [categories, setCategories] = useState( [] );
+  const [searchValue, setSearchValue] = useState( " " );
   
   useEffect( () => {
      dispatch(getProductsThunk());
@@ -23,7 +24,17 @@ const Home = () => {
     .then(resp => setCategories(resp.data))
     .catch(error => console.error(error))
     
-  }, [])
+  }, []);
+
+  useEffect( () => {
+    dispatch(filterProductbyNameThunk());
+    
+   axios.get("https://e-commerce-api-v2.academlo.tech/api/v1/products")
+   .then(resp => setSearchValue(resp.data))
+   .catch(error => console.error(error))
+   
+ }, []);
+
   
   return (
     <div>
@@ -47,10 +58,14 @@ const Home = () => {
             <InputGroup className="mb-3">
               <FormControl
                 placeholder="Busqueda por nombre"
-                aria-label="Recipient's username"
+                aria-label="Product name"
                 aria-describedby="basic-addon2"
+               // value={searchValue}
+                onChange={e => setSearchValue(e.target.value)}
               />
-              <Button variant="outline-secondary" id="button-addon2">
+              <Button
+              variant="outline-secondary" id="button-addon2"
+              onClick = { () => dispatch( filterProductbyNameThunk(searchValue) ) }>
                 Buscar
               </Button>
             </InputGroup>
