@@ -9,6 +9,7 @@ import axios from "axios";
 import ListGroup from 'react-bootstrap/ListGroup';
 import { InputGroup } from 'react-bootstrap';
 import { FormControl } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
   
@@ -82,7 +83,11 @@ const Home = () => {
                         <Card.Text>
                          {products.price}
                         </Card.Text>
-                        <Button variant="primary">Ver Producto</Button>
+                        <Button
+                        variant="primary"
+                        as={Link}
+                        to={ `/ProductsDetail/${products.id}` }
+                        >Ver Producto</Button>
                       </Card.Body>
                   </Card>
                 </Col>

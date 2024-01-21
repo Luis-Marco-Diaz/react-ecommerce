@@ -13,6 +13,7 @@ import ProductsDetail from "./pages/ProductsDetail";
 import Loader from "./components/Loader";
 import Container from "react-bootstrap/Container";
 
+
 function App() {
   const isLoading = useSelector((state) => state.isLoading);
 
