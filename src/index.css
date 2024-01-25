@@ -105,3 +105,11 @@ button:focus-visible {
 .categories{
   cursor: pointer;
 }
+
+
+/* ------------------ APP PRODUCT DETAIL -------------------- */
+
+.Image_Product {
+ color: #000;
+ max-width: 20px;
+}

@@ -5,6 +5,8 @@ import { useParams } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Image from 'react-bootstrap/Image';
+import Carousel from 'react-bootstrap/Carousel';
 
 const ProductsDetail = () => {
 
@@ -31,23 +33,33 @@ const ProductsDetail = () => {
       <Container fluid="md" >
         <br />
 
-      <Row>
-        <Col>
-        <h1>{product.title}</h1>
-        <div className="news-rate" >
-          <img src="" alt="" />
-        </div>
-        </Col>
-        <Col>
-        <p> Details: {product.description} </p>
-        <div className="news-rate" >
-          <button onClick={()=> decrement() } >-</button>
-          <span className="primary m-3"  >{rate}</span>
-          <button onClick={()=> setRate(rate+1)} >+</button>
-          <span className="primary m-3" ></span>
-          <button>AGREGAR A FAVORITOS</button>
-        </div>
-        </Col>
+      <Row style={{alignContent:"center", textAlign:"center"}} >
+          <Col >
+          <h2>{product.title}</h2>
+          <Carousel>
+              <Carousel.Item>
+              <Image src= {product?.images?.[0].url } style={ {height: "350px"} } />
+              </Carousel.Item>
+              <Carousel.Item>
+              <Image src= {product?.images?.[1].url } style={ {height: "350px"} } />
+              </Carousel.Item>
+              <Carousel.Item>
+              <Image src= {product?.images?.[2].url } style={ {height: "350px"} } />
+              </Carousel.Item>
+           </Carousel>
+          
+          </Col>
+
+          <Col style={{marginTop:"50px"}} >
+          <p style={{textAlign:"justify"}} >   Details: {product.description} </p>
+          <div>
+            <button onClick={()=> decrement() } >-</button>
+            <span className="primary m-3"  >{rate}</span>
+            <button onClick={()=> setRate(rate+1)} >+</button>
+            <span className="primary m-3" ></span>
+            <button>AGREGAR A FAVORITOS</button>
+          </div>
+          </Col>
       </Row>
       
       <Row>
