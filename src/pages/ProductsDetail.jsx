@@ -7,12 +7,21 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Image from 'react-bootstrap/Image';
 import Carousel from 'react-bootstrap/Carousel';
+import { useDispatch, useSelector } from "react-redux";
+import { filterCategoryThunk } from "../store/slices/products.slice";
+import ListGroup from 'react-bootstrap/ListGroup';
+
+
+//Importations..........................................................................
 
 const ProductsDetail = () => {
 
   const {id} = useParams()
   const [product, setProducts] = useState( {} )
   const [rate, setRate] = useState(1)
+  const dispatch = useDispatch()
+  const allProducts = useSelector(state => state.products)
+  
 
   useEffect(( ) => {
     axios
@@ -20,8 +29,10 @@ const ProductsDetail = () => {
     .then(resp => {
       console.log(resp.data)
       setProducts(resp.data)
+      dispatch(filterCategoryThunk(resp.data.category.id))
     })
   }, [])
+
 
   const decrement = () => {
     if( rate > 1 ) {
@@ -29,6 +40,9 @@ const ProductsDetail = () => {
     }
   }
 
+ 
+
+  //RETURN...................................................................................
   return (
       <Container fluid="md" >
         <br />
@@ -61,11 +75,22 @@ const ProductsDetail = () => {
           </div>
           </Col>
       </Row>
-      
+      <br />
       <Row>
-        <Col>1 of 3</Col>
-        <Col>2 of 3</Col>
-        <Col>3 of 3</Col>
+        <Col style={{textAlign:"center"}} >
+        <h3>Productos Relacionados</h3>
+        <br />
+        </Col>
+          <ListGroup horizontal >
+             {
+               allProducts.map( category => (
+                 <ListGroup.Item key = {category.id}  >
+                  <p> {product.title} </p>
+                 </ListGroup.Item>
+               ))
+             }
+          </ListGroup>
+        
       </Row>
     </Container>
   );
