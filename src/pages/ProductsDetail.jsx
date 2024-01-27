@@ -10,17 +10,20 @@ import Carousel from 'react-bootstrap/Carousel';
 import { useDispatch, useSelector } from "react-redux";
 import { filterCategoryThunk } from "../store/slices/products.slice";
 import ListGroup from 'react-bootstrap/ListGroup';
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
+
 
 
 //Importations..........................................................................
 
 const ProductsDetail = () => {
 
-  const {id} = useParams()
-  const [product, setProducts] = useState( {} )
-  const [rate, setRate] = useState(1)
-  const dispatch = useDispatch()
-  const allProducts = useSelector(state => state.products)
+  const {id} = useParams();
+  const [product, setProducts] = useState( {} );
+  const [rate, setRate] = useState(1);
+  const dispatch = useDispatch();
+  const allProducts = useSelector((state) => state.products);
   
 
   useEffect(( ) => {
@@ -31,6 +34,7 @@ const ProductsDetail = () => {
       setProducts(resp.data)
       dispatch(filterCategoryThunk(resp.data.category.id))
     })
+    .catch(error => console.error(error))
   }, [])
 
 
@@ -40,7 +44,6 @@ const ProductsDetail = () => {
     }
   }
 
- 
 
   //RETURN...................................................................................
   return (
@@ -81,11 +84,24 @@ const ProductsDetail = () => {
         <h3>Productos Relacionados</h3>
         <br />
         </Col>
-          <ListGroup horizontal >
+          <ListGroup horizontal style={{justifyContent:"center"}} >
              {
                allProducts.map( category => (
-                 <ListGroup.Item key = {category.id}  >
-                  <p> {product.title} </p>
+                 <ListGroup.Item key ={category.id}  >
+                  <Card style={{ width: '15rem' }}>
+                    <Card.Img variant="top" src={category.images[0].url}  />
+                    <Card.Body>
+                      <Card.Title>{category.title}</Card.Title>
+                      <p>
+                      ${category.price}
+                      <br />
+                      {category.brand}
+                      </p>
+
+                      <Button variant="primary">VER PRODUCTO</Button>
+                    </Card.Body>
+                  </Card>
+
                  </ListGroup.Item>
                ))
              }
